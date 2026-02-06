@@ -1,0 +1,750 @@
+/* RAME GLOBAL STYLE (Refonte) */
+
+/* 1. Reset & Fonts */
+@font-face {
+    font-family: 'Montaser Arabic';
+    src: url('assets/fonts/MontaserArabic-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Univers';
+    src: url('assets/fonts/Univers-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Univers';
+    src: url('assets/fonts/Univers-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Fallback fonts if local assets missing (Google Fonts override for dev) */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap');
+
+:root {
+    /* Colors */
+    --bg-color: #000000;
+    --text-color: #ffffff;
+
+    /* Fonts */
+    --font-title: 'Montaser Arabic', 'Oswald', sans-serif;
+    --font-body: 'Univers', 'Roboto', sans-serif;
+
+    /* Spacing */
+    --safe-area-top: env(safe-area-inset-top, 0px);
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+    --nav-height: 80px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: var(--bg-color);
+    /* Black background fallback */
+}
+
+body {
+    background-color: transparent;
+    /* Allows seeing the video behind (z-index -2) */
+    color: var(--text-color);
+    font-family: var(--font-body);
+    font-weight: 400;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    opacity: 0;
+    /* Pour la transition d'entrée JS */
+    transition: opacity 320ms cubic-bezier(.2, .6, .2, 1);
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+img,
+video {
+    max-width: 100%;
+    display: block;
+}
+
+/* 2. Top Navigation (Global) */
+.topnav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: clamp(70px, 12vh, 140px);
+    /* Agrandissement Nav */
+    padding: var(--safe-area-top) clamp(20px, 4vw, 50px) 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    pointer-events: none;
+    /* Laisse passer les clics au travers sauf sur les éléments */
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.nav-links,
+.nav-logo {
+    pointer-events: auto;
+}
+
+/* Links (Left) */
+.nav-links {
+    display: flex;
+    gap: clamp(10px, 2vw, 40px);
+    /* Reduced min gap for mobile */
+    flex-wrap: wrap;
+    /* Allow wrapping on very small screens */
+    align-items: center;
+}
+
+.nav-links a {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(14px, 1.5vw, 18px);
+    /* Mobile: 14px, Desktop: up to 18px+ */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+    position: relative;
+    /* Pour le pseudo-element */
+    padding-bottom: 5px;
+}
+
+/* Desktop override sizes */
+@media (min-width: 769px) {
+    .nav-links a {
+        font-size: clamp(18px, 1.2vw, 30px);
+    }
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: #fff;
+    transition: width 0.4s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+.nav-links a:hover {
+    opacity: 1;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Logo (Right) */
+.nav-logo img {
+    height: clamp(60px, 10vh, 120px);
+    /* Logo XL */
+    width: auto;
+}
+
+/* Mobile Rules (< 340px hide logo) */
+@media (max-width: 340px) {
+    .nav-logo {
+        display: none;
+    }
+}
+
+/* --- PREMIUM UPGRADES --- */
+
+/* 1. Grain Overlay */
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9000;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+}
+
+/* 2. Custom Cursor */
+@media (hover: hover) and (pointer: fine) {
+    body {
+        cursor: none;
+    }
+
+    .custom-cursor {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        background-color: #fff;
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        transition: width 0.2s cubic-bezier(0.19, 1, 0.22, 1),
+            height 0.2s cubic-bezier(0.19, 1, 0.22, 1),
+            border-radius 0.2s cubic-bezier(0.19, 1, 0.22, 1),
+            opacity 0.3s;
+        mix-blend-mode: exclusion;
+        /* Plus doux que difference */
+    }
+
+    /* Effet "Magnetic" / Morphing au survol */
+    .custom-cursor.hovered {
+        opacity: 0.1;
+        /* Beaucoup plus transparent pour voir le texte */
+        /* background/mix-blend-mode conservés du parent si besoin ou écrasés ici */
+        mix-blend-mode: difference;
+        /* Inversion pour contraste max mais transparent */
+    }
+}
+
+/* Team Social Overlay */
+.team-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.team-image-wrapper img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.team-social-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.team-image-wrapper:hover .team-social-overlay {
+    opacity: 1;
+}
+
+.team-image-wrapper:hover img {
+    transform: scale(1.05);
+}
+
+.team-social-link {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.team-social-link:hover {
+    color: var(--accent-color, #e50914);
+    /* Fallback accent if not defined globally */
+    transform: scale(1.2);
+}
+
+/* 3. Video Background */
+.video-bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+    transition: filter 0.1s linear, opacity 0.1s linear;
+    /* Smooth update from JS */
+    will-change: filter, opacity;
+}
+
+.video-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1));
+    z-index: -1;
+}
+
+/* 4. Utilities */
+.btn-scroll {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.btn-scroll:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
+}
+
+.btn-scroll img {
+    width: 20px;
+    height: 20px;
+}
+
+/* 5. Specific Page Styles */
+
+/* Accueil */
+.hero-home {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.home-logo {
+    max-width: clamp(200px, 50vw, 600px);
+    margin-bottom: clamp(30px, 5vh, 60px);
+}
+
+.btn-enter {
+    font-family: var(--font-title);
+    font-size: clamp(2rem, 4vw, 4rem);
+    text-transform: uppercase;
+    border: none;
+    background: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btn-enter:hover {
+    letter-spacing: 2px;
+}
+
+/* Production & Generic Hero */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: var(--nav-height);
+    position: relative;
+}
+
+.hero-logo-small {
+    width: clamp(80px, 15vw, 150px);
+    margin-bottom: 20px;
+}
+
+/* Image Voiture sur Production */
+.hero-top-image {
+    width: clamp(200px, 40vw, 500px);
+    /* Taille adaptative */
+    height: auto;
+    margin-bottom: 30px;
+    display: block;
+}
+
+h1.hero-title {
+    font-family: var(--font-title);
+    font-size: clamp(3rem, 8vw, 6rem);
+    margin-bottom: 40px;
+    line-height: 1;
+}
+
+.scroll-anchor {
+    position: absolute;
+    bottom: clamp(30px, 5vh, 60px);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Content Blocks */
+.content-section {
+    padding: 100px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.text-block {
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+/* Base style for reveal items (text lines) - LEAVE AS IS FOR PRODUCTION PAGE */
+.reveal-text {
+    display: block;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease;
+    transform: translateY(100%);
+    /* Départ "sous le sol" */
+    opacity: 0;
+}
+
+.text-block.visible .reveal-text {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* GENERIC SELF-REVEAL (For Images/Cards) */
+.reveal-scroll {
+    display: block;
+    opacity: 0;
+    transform: translateY(50px);
+    /* Un peu moins agressif pour les images */
+    transition: transform 0.8s cubic-bezier(0.2, 0.6, 0.2, 1), opacity 0.8s ease;
+}
+
+.reveal-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Specific delays for H2 and P if wrapped */
+.text-block h2.reveal-text {
+    margin-bottom: 20px;
+}
+
+.text-block p.reveal-text {
+    transition-delay: 0.1s;
+    /* Petit décalage pour le paragraphe */
+}
+
+.text-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.text-block h2 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.text-block p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    line-height: 1.6;
+    max-width: 70ch;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+/* Apropos */
+.bleed-image {
+    width: 100%;
+    height: clamp(300px, 50vh, 800px);
+    object-fit: cover;
+    margin-bottom: 80px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 colonnes Mobile et Desktop */
+    gap: clamp(20px, 4vw, 60px);
+    max-width: 1200px;
+    margin: 60px auto 0;
+}
+
+.team-member {
+    text-align: center;
+}
+
+.team-member img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+    /* Marge et Radius sont maintenant gérés par .team-image-wrapper */
+}
+
+.team-member h3 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    /* Bold */
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.team-member p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: clamp(0.8rem, 1vw, 1rem);
+    opacity: 0.7;
+}
+
+/* Contact */
+.glass-card {
+    background: rgba(0, 0, 0, 0.4);
+    /* Semi transparent */
+    backdrop-filter: blur(20px);
+    padding: clamp(40px, 6vw, 80px);
+    border-radius: 16px;
+    text-align: center;
+    max-width: 760px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.glass-card h2 {
+    font-family: var(--font-title);
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 40px;
+}
+
+.contact-details p {
+    font-family: var(--font-body);
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    margin-bottom: 20px;
+}
+
+.contact-details a {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 2px;
+}
+
+.contact-details a:hover {
+    border-color: #fff;
+}
+
+/* Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+
+    body,
+    .text-block,
+    a {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* --- PROJECTS GRID (Realisations Page) --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 4vw, 60px);
+    margin-top: 60px;
+}
+
+/* Mobile responsive grid */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.project-card {
+    cursor: pointer;
+}
+
+.project-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9/16;
+    /* FORMAT PORTRAIT (VERTICAL) */
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.project-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-overlay i {
+    font-size: 3rem;
+    color: #fff;
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Hover Effects */
+.project-card:hover .project-media img {
+    transform: scale(1.05);
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-card:hover .project-overlay i {
+    transform: scale(1);
+}
+
+.project-info h3 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+/* --- VIDEO LIGHTBOX MODAL --- */
+.video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.video-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* --- PRELOADER (Intro) --- */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 99999;
+    /* Au-dessus de tout */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.preloader-logo img {
+    width: 120px;
+    height: auto;
+    opacity: 0;
+    /* Animé par JS */
+    transform: scale(0.9);
+}
+
+.preloader-counter {
+    margin-top: 20px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: #666;
+    opacity: 0;
+    /* Animé par JS */
+}
+
+/* --- PAGE CURTAIN (Transition) --- */
+.page-curtain {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background-color: #000;
+    z-index: 99990;
+    /* Juste sous le preloader mais sur le contenu */
+    pointer-events: none;
+}
+
+.video-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    aspect-ratio: 16/9;
+    background: #000;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.video-modal iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-modal-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: transform 0.2s;
+}
+
+.video-modal-close:hover {
+    transform: scale(1.1);
+}
+
+.project-info p {
+    font-family: var(--font-body);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+}

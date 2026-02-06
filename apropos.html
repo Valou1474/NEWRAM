@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>RAME - À Propos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="data.js"></script>
+    <script src="script.js" defer></script>
+    <link rel="icon" type="image/png" href="assets/img/logopage.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "À Propos - RAME",
+      "description": "L'équipe et l'histoire de l'agence RAME Production."
+    }
+    </script>
+</head>
+
+<body>
+    <div class="grain-overlay"></div>
+    <div class="page-curtain"></div>
+
+    <nav class="topnav">
+        <div class="nav-links">
+            <a href="production.html">Production</a>
+            <a href="realisations.html">Réalisations</a>
+            <a href="apropos.html" style="opacity:1;">À Propos</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="nav-logo">
+            <a href="index.html"><img src="assets/img/logo.png" alt="RAME Logo"></a>
+        </div>
+    </nav>
+
+    <div class="video-bg-container">
+        <video autoplay muted loop playsinline class="video-bg" poster="assets/img/apropos-large.jpg">
+            <!-- Placeholder: Real file is assets/video/page3.mp4 -->
+            <source src="assets/video/page3.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <main>
+        <!-- Hero Minimal -->
+        <section class="hero-section" style="min-height: 80vh;"> <!-- Height adjusted so we see content sooner -->
+            <div class="scroll-anchor">
+                <button class="btn-scroll">
+                    <img src="assets/img/fleche.png" alt="Descendre">
+                </button>
+            </div>
+        </section>
+
+        <div id="content">
+            <!-- Bleed Image -->
+            <img src="assets/img/apropos-large.jpg" alt="L'équipe RAME en action" class="bleed-image">
+
+            <!-- Intro -->
+            <div class="content-section" style="padding-top: 0;">
+                <div class="text-block visible">
+                    <h2>L'AGENCE</h2>
+                    <p>RAME est née d'une volonté commune de repousser les limites de la création visuelle. Basés à
+                        Montréal, nous sommes une famille de créatifs dédiés à l'excellence visuelle et sonore.</p>
+                </div>
+
+                <div class="text-block visible">
+                    <h2>L'EQUIPE</h2>
+
+                    <div class="team-grid">
+                        <!-- L'équipe est générée automatiquement depuis data.js -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

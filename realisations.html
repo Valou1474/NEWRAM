@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>RAME - Réalisations</title>
+    <meta name="description" content="Découvrez nos dernières réalisations vidéo : clips, publicités, documentaires.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="data.js"></script>
+    <script src="script.js" defer></script>
+    <link rel="icon" type="image/png" href="assets/img/logopage.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Réalisations - RAME",
+      "description": "Portfolio des projets vidéos de l'agence RAME."
+    }
+    </script>
+</head>
+
+<body>
+    <div class="grain-overlay"></div>
+    <div class="page-curtain"></div>
+
+    <nav class="topnav">
+        <div class="nav-links">
+            <a href="production.html">Production</a>
+            <a href="realisations.html" style="opacity:1;">Réalisations</a>
+            <a href="apropos.html">À Propos</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="nav-logo">
+            <a href="index.html"><img src="assets/img/logo.png" alt="RAME Logo"></a>
+        </div>
+    </nav>
+
+    <div class="video-bg-container">
+        <video autoplay muted loop playsinline class="video-bg" poster="assets/img/apropos-large.jpg">
+            <source src="assets/video/page2.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <main>
+        <section class="hero-section">
+            <h1 class="hero-title">NOS PROJETS</h1>
+            <div class="scroll-anchor">
+                <button class="btn-scroll">
+                    <img src="assets/img/fleche.png" alt="Descendre">
+                </button>
+            </div>
+        </section>
+
+        <div id="content" class="content-section">
+
+            <div class="text-block visible">
+                <h2>DERNIÈRES SORTIES</h2>
+                <p>Une sélection de nos travaux récents.</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Projet 1 (YouTube Example) -->
+                <div class="project-card reveal-scroll" data-video-type="youtube" data-video-id="dQw4w9WgXcQ">
+                    <div class="project-media">
+                        <!-- Placeholder Video/Image -->
+                        <img src="assets/img/apropos-large.jpg" alt="Projet 1" loading="lazy">
+                        <div class="project-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>TITRE DU PROJET 1</h3>
+                        <p>Clip Musical • 2024</p>
+                    </div>
+                </div>
+
+                <!-- Projet 2 (Vimeo Example - Fake ID) -->
+                <div class="project-card reveal-scroll" data-video-type="vimeo" data-video-id="76979871">
+                    <div class="project-media">
+                        <img src="assets/img/apropos-large.jpg" alt="Projet 2" loading="lazy">
+                        <div class="project-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>CAMPAGNE PUB</h3>
+                        <p>Publicité • 2024</p>
+                    </div>
+                </div>
+
+                <!-- Projet 3 -->
+                <div class="project-card" data-video-type="youtube" data-video-id="jfKfPfyJRdk">
+                    <div class="project-media">
+                        <img src="assets/img/apropos-large.jpg" alt="Projet 3" loading="lazy">
+                        <div class="project-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>DOCUMENTAIRE ART</h3>
+                        <p>Documentaire • 2023</p>
+                    </div>
+                </div>
+
+                <!-- Projet 4 -->
+                <div class="project-card" data-video-type="youtube" data-video-id="Lx_r_2VfBAc">
+                    <div class="project-media">
+                        <img src="assets/img/apropos-large.jpg" alt="Projet 4" loading="lazy">
+                        <div class="project-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>SHORT FILM</h3>
+                        <p>Fiction • 2023</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</body>
+
+</html>
