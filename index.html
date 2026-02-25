@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>RAME - Production</title>
+    <meta name="description" content="RAME - Agence de production vidéo et podcast à Montréal.">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="data.js"></script>
+    <script src="script.js" defer></script>
+    <link rel="icon" type="image/png" href="assets/img/logopage.png">
+
+    <!-- SEO Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "RAME Production",
+      "url": "https://rame-production.ca",
+      "logo": "https://rame-production.ca/assets/img/logo.png",
+      "description": "Agence de production vidéo et podcast à Montréal.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Montréal",
+        "addressRegion": "QC",
+        "addressCountry": "CA"
+      }
+    }
+    </script>
+</head>
+
+<body>
+    <div class="grain-overlay"></div>
+
+    <!-- PRELOADER -->
+    <div class="preloader">
+        <div class="preloader-logo">
+            <img src="assets/img/logo.png" alt="RAME Loading">
+        </div>
+        <div class="preloader-counter">0%</div>
+    </div>
+
+    <!-- PAGE TRANSITION CURTAIN -->
+    <div class="page-curtain"></div>
+
+    <!-- Top Navigation -->
+    <nav class="topnav">
+        <div class="nav-links">
+            <a href="production.html">Production</a>
+            <a href="realisations.html">Réalisations</a>
+            <a href="apropos.html">À Propos</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="nav-logo">
+            <a href="index.html">
+                <img src="assets/img/logo.png" alt="RAME Logo">
+            </a>
+        </div>
+    </nav>
+
+    <!-- Video Background -->
+    <div class="video-bg-container">
+        <video autoplay muted loop playsinline class="video-bg" poster="assets/img/apropos-large.jpg">
+            <source src="assets/video/page2.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <main class="hero-home">
+        <div class="home-logo">
+            <img src="assets/img/logopage1.png" alt="RAME Grand Logo">
+        </div>
+
+        <div class="enter-btn-wrapper">
+            <a href="production.html" class="btn-enter">ENTRER</a>
+        </div>
+    </main>
+
+</body>
+
+</html>
